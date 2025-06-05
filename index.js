@@ -67,19 +67,20 @@ function startApp() {
   });
 }
 
-// Placeholder functions for next steps:
+// View Departments
 function viewDepartments() {
-  client.query('SELECT id, name FROM department ORDER BY id;') // get departments ordered by id
+  client.query('SELECT id, name FROM department ORDER BY id;')
     .then(res => {
-      console.table(res.rows); // display results in table format
-      startApp(); // go back to main menu
+      console.table(res.rows);
+      startApp();
     })
     .catch(err => {
-      console.error('Error viewing departments:', err); // show error
-      startApp(); // continue app anyway
+      console.error('Error viewing departments:', err);
+      startApp();
     });
 }
 
+// View Roles
 function viewRoles() {
   const query = `
     SELECT role.id, role.title, department.name AS department, role.salary
@@ -99,7 +100,7 @@ function viewRoles() {
     });
 }
 
-
+// View Employees
 function viewEmployees() {
   const query = `
     SELECT e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary,
@@ -122,30 +123,36 @@ function viewEmployees() {
     });
 }
 
-
+// Add Department
 function addDepartment() {
   inquirer.prompt([
     {
       type: 'input',
-      name: 'name',
+      name: 'deptName',
       message: 'Enter the name of the new department:',
-      validate: input => input ? true : 'Please enter a department name.',
+      validate: input => input ? true : 'Department name cannot be empty.',
     }
-  ]).then(answer => {
-    client.query('INSERT INTO department (name) VALUES ($1)', [answer.name])
-      .then(() => {
-        console.log(`Department "${answer.name}" added.`);
+  ])
+  .then(answer => {
+    const sql = 'INSERT INTO department (name) VALUES ($1) RETURNING *';
+    client.query(sql, [answer.deptName])
+      .then(res => {
+        console.log(`Added department: ${res.rows[0].name}`);
         startApp();
       })
       .catch(err => {
-        console.error('Error adding department:', err);
+        if (err.code === '23505') { // unique violation
+          console.log('Department already exists.');
+        } else {
+          console.error('Error adding department:', err);
+        }
         startApp();
       });
   });
 }
 
+// Add Role
 function addRole() {
-  // first get departments to choose from
   client.query('SELECT id, name FROM department')
     .then(res => {
       const departments = res.rows.map(dep => ({ name: dep.name, value: dep.id }));
@@ -189,16 +196,19 @@ function addRole() {
     });
 }
 
+// Add Employee — FULL Step 3 & 4 here
 function addEmployee() {
   Promise.all([
     client.query('SELECT id, title FROM role'),
     client.query('SELECT id, first_name, last_name FROM employee'),
   ])
     .then(([rolesRes, employeesRes]) => {
+      // Map roles and employees into choices for inquirer
       const roles = rolesRes.rows.map(r => ({ name: r.title, value: r.id }));
       const managers = employeesRes.rows.map(e => ({ name: `${e.first_name} ${e.last_name}`, value: e.id }));
       managers.unshift({ name: 'None', value: null }); // option for no manager
 
+      // Prompt for new employee data
       inquirer.prompt([
         {
           type: 'input',
@@ -225,6 +235,7 @@ function addEmployee() {
           choices: managers,
         }
       ]).then(answers => {
+        // Insert new employee into DB
         client.query(
           'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)',
           [answers.first_name, answers.last_name, answers.role_id, answers.manager_id]
@@ -245,6 +256,7 @@ function addEmployee() {
     });
 }
 
+// Update Employee Role
 function updateEmployeeRole() {
   Promise.all([
     client.query('SELECT id, first_name, last_name FROM employee'),
@@ -287,4 +299,3 @@ function updateEmployeeRole() {
       startApp();
     });
 }
-
