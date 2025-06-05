@@ -81,17 +81,17 @@ function viewDepartments() {
 }
 
 function viewRoles() {
-  const sql = `
+  const query = `
     SELECT role.id, role.title, department.name AS department, role.salary
     FROM role
-    JOIN department ON role.department_id = department.id
+    LEFT JOIN department ON role.department_id = department.id
     ORDER BY role.id;
-  `; // SQL to get roles with department name
+  `;
 
-  client.query(sql)
+  client.query(query)
     .then(res => {
-      console.table(res.rows); // show roles in table
-      startApp(); // back to menu
+      console.table(res.rows);
+      startApp();
     })
     .catch(err => {
       console.error('Error viewing roles:', err);
@@ -99,27 +99,29 @@ function viewRoles() {
     });
 }
 
-function viewEmployees() {
-  const sql = `
-    SELECT e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary,
-      CONCAT(m.first_name, ' ', m.last_name) AS manager
-    FROM employee e
-    LEFT JOIN employee m ON e.manager_id = m.id
-    JOIN role ON e.role_id = role.id
-    JOIN department ON role.department_id = department.id
-    ORDER BY e.id;
-  `; // SQL to get employee info with roles, departments, managers
 
-  client.query(sql)
+function viewEmployees() {
+  const query = `
+    SELECT e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary,
+           CONCAT(m.first_name, ' ', m.last_name) AS manager
+    FROM employee e
+    LEFT JOIN role ON e.role_id = role.id
+    LEFT JOIN department ON role.department_id = department.id
+    LEFT JOIN employee m ON e.manager_id = m.id
+    ORDER BY e.id;
+  `;
+
+  client.query(query)
     .then(res => {
-      console.table(res.rows); // show employees table
-      startApp(); // back to menu
+      console.table(res.rows);
+      startApp();
     })
     .catch(err => {
       console.error('Error viewing employees:', err);
       startApp();
     });
 }
+
 
 function addDepartment() {
   inquirer.prompt([
