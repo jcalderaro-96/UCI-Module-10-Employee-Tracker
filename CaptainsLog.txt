@@ -1,0 +1,59 @@
+==========================
+Captain's Log - Employee Tracker Progress
+==========================
+
+--- Commit Summary ---
+
+Title: Implement core employee tracker features with Inquirer and PostgreSQL
+
+Description:
+- Setup Node.js app with inquirer and pg to connect to PostgreSQL
+- Created interactive CLI menu for viewing departments, roles, and employees
+- Added functionality to add departments, roles, and employees
+- Implemented update employee role feature
+- Tested database queries and ensured smooth navigation through the menu
+
+--- Progress Against Grading Rubric ---
+
+Deliverables: GitHub repo with code
+Status: DONE (🟢)
+Notes: Repository created with working app code.
+
+Walkthrough Video
+Status: NOT DONE (🔴)
+Notes: Needs to be recorded and linked in README.
+
+Technical Acceptance Criteria
+Status: MOSTLY DONE (🟢)
+Notes: Uses inquirer and pg, meets table schema, implemented required features except some advanced queries.
+
+Repository Quality
+Status: PARTIALLY DONE (🟡)
+Notes: Commits are descriptive; README & folder structure TBD.
+
+Application Quality
+Status: DONE (🟢)
+Notes: Intuitive CLI navigation confirmed.
+
+--- Bonus Features Status ---
+
+- Update employee managers: NOT DONE (🔴)
+- View employees by manager/department: NOT DONE (🔴)
+- Delete departments/roles/employees: NOT DONE (🔴)
+- View total utilized budget: NOT DONE (🔴)
+
+--- Estimated Time & Effort Remaining ---
+
+- Walkthrough video & README: 15-30 minutes
+- Repository polish & README: 20-30 minutes
+- Bonus features (optional): 1-2 hours depending on scope
+- Basic features completion (if any missing): ~30 minutes
+
+--- Summary ---
+
+Progress: Approximately 70-75% complete toward basic requirements.
+Time spent: ~1 hour 15 minutes.
+
+Next steps: Decide whether to focus on polishing & documentation or tackle bonus features.
+
+==========================
