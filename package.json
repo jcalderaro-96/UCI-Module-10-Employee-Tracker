@@ -1,6 +1,7 @@
 {
   "name": "uci-module-10-employee-tracker",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +19,7 @@
   "homepage": "https://github.com/jcalderaro-96/UCI-Module-10-Employee-Tracker#readme",
   "description": "",
   "dependencies": {
-    "inquirer": "^12.6.3",
+    "inquirer": "^9.3.7",
     "pg": "^8.16.0"
   }
 }
