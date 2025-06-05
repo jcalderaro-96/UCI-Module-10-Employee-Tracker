@@ -36,7 +36,7 @@ Choose options to view, add, or update data.
 - Command-line interface using Inquirer prompts
 
 ## Walkthrough Video
-- Link Here
+- [Link Here](https://app.screencastify.com/watch/RjQOBAjdnZ1LDE71JR60)
 
 ## License
 This project is licensed under the ISC License.
