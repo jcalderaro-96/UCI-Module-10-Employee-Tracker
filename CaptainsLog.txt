@@ -57,3 +57,37 @@ Time spent: ~1 hour 15 minutes.
 Next steps: Decide whether to focus on polishing & documentation or tackle bonus features.
 
 ==========================
+
+| Requirement                                           | Status | Notes                                                                                        |
+| ----------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------- |
+| **Command-line app accepts user input**               | ✅ Done | Using Inquirer prompts                                                                       |
+| **Menu options:**                                     | ✅ Done | View departments, roles, employees, add department/role/employee, update employee role, exit |
+| **View all departments**                              | ✅ Done | Shows formatted table with IDs and names                                                     |
+| **View all roles**                                    | ✅ Done | Shows title, role id, department, salary                                                     |
+| **View all employees**                                | ✅ Done | Shows employee id, names, role, dept, salary, and manager                                    |
+| **Add department**                                    | ✅ Done | Prompt and add to database                                                                   |
+| **Add role**                                          | ✅ Done | Prompt and add to database                                                                   |
+| **Add employee**                                      | ✅ Done | Prompt and add with role and manager                                                         |
+| **Update employee role**                              | ✅ Done | Prompt and update role in DB                                                                 |
+| **Uses Inquirer package**                             | ✅ Done | Verified in `package.json` and code                                                          |
+| **Uses pg package for PostgreSQL**                    | ✅ Done | Verified in `package.json` and code                                                          |
+| **Follows table schema exactly**                      | ✅ Done | Schema followed with department, role, employee tables                                       |
+| **Repository with unique name**                       | ✅ You  | Confirmed by you                                                                             |
+| **Descriptive commit messages**                       | ✅ You  | Confirmed by your commits                                                                    |
+| **High-quality README with description & video link** | ✅ Done | README completed and video linked (or ready to link)                                         |
+| **App is intuitive and easy to navigate**             | ✅ Done | CLI menu interface                                                                           |
+
+What is not required and was skipped:
+Bonus features (update managers, delete records, budgets, view by manager/department) — not done, but optional.
+
+Submission readiness:
+You are fully cleared to submit your repository as-is for full credit on the core challenge.
+
+Suggested last-minute checks:
+Make sure your README contains the walkthrough video link and instructions to run the app.
+
+Test running node index.js from scratch on a fresh terminal to confirm no errors.
+
+Commit and push all latest changes.
+
+To execute: terminal -> node index.js
