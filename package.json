@@ -1,0 +1,24 @@
+{
+  "name": "uci-module-10-employee-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcalderaro-96/UCI-Module-10-Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcalderaro-96/UCI-Module-10-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/jcalderaro-96/UCI-Module-10-Employee-Tracker#readme",
+  "description": "",
+  "dependencies": {
+    "inquirer": "^12.6.3",
+    "pg": "^8.16.0"
+  }
+}
